@@ -1,23 +1,20 @@
 import sqlite3
-from AbstractClassDeveloper import *
 
-class DataBase(AbstractLOL):
-    def __init__(slef):
-        self.conexion = sqlite3.connect('Summoner.db')
-        self.cursor = self.conexion.cursor()
+class DataBase():
+    conexion = sqlite3.connect('SummonerDB.db')
+    cursor = conexion.cursor()
 
-	def CrearInvocador(self, invocador):
-        #Coneccion para agregar summoner a la db
+    cursor.execute('''CREATE TABLE Summoner
+                (Id int PRIMARY KEY NOT NULL,
+                 Name text NOT NULL,
+                 Level int NOT NULL,
+                 Wins int NOT NULL,
+                 Losses int NOT NULL,
+                 Tier text NOT NULL,
+                 Comportamiento text NULL) ''')
 
-	def ConsultarInvocador(self, Name):
-        #Coneccion para consultar datos de un summoner mediante su Nombre
-
-	def ModificarInvocador(self):
-        #Coneccion para modificar los datos de un summoner en la db
-
-	def BorrarInvocador(self, Name):
-        #Coneccion para quitar a un summoner de la DB
-
-    def Close(self):
-        self.conexion.close()
-        return 'Terminar coneccion con DB'
+    #cursor.execute("INSERT INTO Summoner (Id, Name, Level, Wins, Losses, Tier, Comportamiento) VALUES (17544320, 'l Irving l', 46, 88, 66, 'PLATINUM', 'aqui va el comportamiento')")
+    conexion.commit()
+    conexion.close()
+if __name__ == '__main__':
+    DataBase()

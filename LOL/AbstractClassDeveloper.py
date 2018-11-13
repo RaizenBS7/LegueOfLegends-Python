@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 class Invocador():
 	def __init__(self, Id, Name, Level, Wins, Losses, Tier, Comportamiento = None):
-		self.Id = id
+		self.Id = Id
 		self.Name = Name
 		self.Level = Level
 		self.Wins = Wins
@@ -10,18 +10,18 @@ class Invocador():
 		self.Tier = Tier
 		self.Comportamiento = Comportamiento
 
-###################################################################################################################
+	def __str__(self):
+		return str(self.Id) +" - "+ str(self.Name) +" - "+ str(self.Level) +" - "+ str(self.Wins) +" - "+ str(self.Losses) +" - "+ str(self.Tier) +" - "+ str(self.Comportamiento)
 
 class Comportamiento():
-	def __init__(self, Name):
+	def __init__(self, Name, Comportamiento):
 		self.Name = Name
-
-###################################################################################################################
+		self.Comportamiento = Comportamiento
 
 class AbstractLOL(ABC):
 
 	@abstractmethod
-	def CrearInvocador(self, invocador):
+	def CrearInvocador(self, Name):
 		#Toma como parámetro nombre (instancia clase iNVOCADOR) y lo guarda en la BD.
 		pass
 
@@ -40,7 +40,6 @@ class AbstractLOL(ABC):
         #Toma el nombre de un invocador y lo borra de la base de datos
 		pass
 
-###################################################################################################################
 class AbstractSummoner(ABC):
 	@abstractmethod
 	def DatosSummoner(self, name):

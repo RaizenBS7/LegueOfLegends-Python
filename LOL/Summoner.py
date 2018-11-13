@@ -3,11 +3,10 @@ from AbstractClassDeveloper import Invocador
 from AbstractClassDeveloper import AbstractSummoner
 import sys
 
-#summoner = 'Raizen%20blackshot'
-
 class AppInvocador(AbstractSummoner):
+
     def DatosSummoner(self, summoner):
-        key = 'RGAPI-d5b1e6ba-b6f1-421c-be14-e0dcef5a4d1a'
+        key = 'RGAPI-8e853297-ce9d-41c0-923f-2fb2e7e1eb20'
         region = 'la1'
 
         chall_r = requests.get('https://' + region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + summoner + '?api_key=' + key)
@@ -16,20 +15,26 @@ class AppInvocador(AbstractSummoner):
             Id = chall_J['id']
             Name = chall_J['name']
             Level = chall_J['summonerLevel']
-#            print(Id, Name, Level)
-            Id = str(Id)
-        chall_m = requests.get('https://' + region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + Id + '?api_key=' + key)
+
+        chall_m = requests.get('https://' + region + '.api.riotgames.com/lol/league/v3/positions/by-summoner/' + str(Id) + '?api_key=' + key)
+
         if(chall_m.status_code == 200):
             chall_n = chall_m.json()
-#            print(chall_n[2])
-            Wins =chall_n[2]['wins']
-            Losses = chall_n[2]['losses']
-            Tier = chall_n[2]['tier']
-#            print(Tier, Wins, Losses)
+
+        Wins = 0
+        Losses = 0
+        Tier = 'No tiene partidas en ranked'
+
+        for i in chall_n:
+            if i['queueType'] == 'RANKED_SOLO_5x5': #Veriacion que sea el diccionario de soloQ
+                Wins = i['wins']
+                Losses = i['losses']
+                Tier = i['tier']
+
         return Invocador(Id, Name, Level, Wins, Losses, Tier)
+
 
 if __name__ == "__main__":
     player = AppInvocador()
-    summoner = player.DatosSummoner('Raizenblackshot')
-
-#Prueba para testing | que pasa cuando no tiene ranket registradas el summoner
+#    summoner = player.DatosSummoner('Raizen blackshot')
+#    print(summoner)
