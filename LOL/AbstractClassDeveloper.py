@@ -45,7 +45,3 @@ class AbstractSummoner(ABC):
 	def DatosSummoner(self, name):
 		#esta clase toma el nombre del invocador y retorna un objeto de tipo Invocador
 		pass
-
-if __name__ == "__main__":
-	comportamiento = Comportamiento('Nombre')
-	print(comportamiento.Name)
