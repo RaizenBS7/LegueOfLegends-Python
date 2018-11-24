@@ -45,7 +45,7 @@ if __name__ == "__main__":
 #    invocador3 = player.DatosSummoner('l irving l')
 #    NewInvocador = crud.CrearInvocador(invocador3)
 #    NewConsulta = crud.ConsultarInvocador('l Irving l')
-#    ConsultarLista = crud.MostrarLista()
+    ConsultarInvocador = crud.ConsultarInvocador('Raizen blackshot')
 #    Borrar = crud.BorrarInvocador('l Irving l')
 #    Borrar = crud.BorrarInvocador('Raizen blackshot')
 #    comp= Comportamiento('l Irving l', 'Toxico el chavo')

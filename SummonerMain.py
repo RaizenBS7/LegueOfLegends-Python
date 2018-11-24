@@ -36,7 +36,7 @@ def MainLOL():
 		elif opcion == 3: #Mostrar un invocador en especifico de la DB
 			Summoner=input("Ingresa el Nombre del Invocador:	")
 			NewConsulta = crud.ConsultarInvocador(Summoner)
-			print(NewConsulta)
+#			print(NewConsulta)
 			sleep(1)
 			print('\n')
 			continue
