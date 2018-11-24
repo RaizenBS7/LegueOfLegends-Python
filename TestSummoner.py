@@ -14,10 +14,6 @@ class TestSummoner(unittest.TestCase):
     def tearDown(self): #Finalizo la prueba del mock
         print("Fin de la prueba")
 
-#    def test_close(self): #En este test pruebo que la coneccion a la DB sea abirta, el cual nos regresara un mensaje de que se abrio correctamente
-#        print("test_Open")
-#        self.init = SQL.__init__()
-
     def SummonerTest(self):
         print("invocador_test")
         self.invocador1 = Summ.DatosSummoner('Raizen blackshot')
