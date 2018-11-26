@@ -6,7 +6,7 @@ import sys
 class AppInvocador(AbstractSummoner):
 
     def DatosSummoner(self, summoner):
-        key = 'RGAPI-07be0cfe-0a03-4e0f-b277-fb7d13f20bd8'
+        key = 'RGAPI-10535186-ebd4-4b7f-869a-f9593ce9fa06'
         region = 'la1'
 
         chall_r = requests.get('https://' + region + '.api.riotgames.com/lol/summoner/v3/summoners/by-name/' + summoner + '?api_key=' + key)

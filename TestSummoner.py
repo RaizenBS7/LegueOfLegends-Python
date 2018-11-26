@@ -7,30 +7,33 @@ from AbstractClassDeveloper import Invocador, AbstractLOL, AbstractSummoner
 #(402492, 'jarasdeboy', 119, 173, 192, 'PLATINUM', None)
 class TestSummoner(unittest.TestCase):
     def setUp(self): #Iniciador donde dare datos iniciales para la prueba que seran mas tarde reescribidos
-        self.Summ = AppInvocador() #conecto con la clase AppInvocador Del archivo Summoner.py
-        self.SQL = SqlCRUD() #Abro la coneccion con la DB
-        print('Invocador guarado correctamente')
+        self.summ = AppInvocador() #conecto con la clase AppInvocador Del archivo Summoner.py
+        self.sql = SqlCRUD() #Abro la coneccion con la DB
+    #    self.sql.CrearInvocador(self.Invocador)
+        self.invocador1 = Invocador(1166018, 'Raizen blackshot', 115, 132, 129, 'PLATINUM', None)
+#        print('Invocador guarado correctamente')
 
     def tearDown(self): #Finalizo la prueba del mock
         print("Fin de la prueba")
 
-    def SummonerTest(self):
-        print("invocador_test")
-        self.invocador1 = Summ.DatosSummoner('Raizen blackshot')
+    def test_summoner(self):
+        self.invocador1 = self.summ.DatosSummoner('Raizen blackshot')
+        print("test_summoner")
         self.assertEqual(self.invocador1.Id, 1166018)
-        self.assertEqual(self.invocador1.Name, 'Raizen blackshot')
-        self.assertEqual(self.invocador1.Level, 114 )
+        self.assertEqual(self.invocador1.Name, ('Raizen blackshot'))
+        self.assertEqual(self.invocador1.Level, 115 )
         self.assertEqual(self.invocador1.Wins, 132 )
         self.assertEqual(self.invocador1.Losses, 129 )
         self.assertEqual(self.invocador1.Tier, 'PLATINUM' )
+        self.assertEqual(self.invocador1.Comportamiento, None )
 
-    def CrearInvocador_test(self):
-        print("CrearInvocador_test")
-        self.assertIsInstance(self.SQL.CrearInvocador(self.Invocador), Invocador)
+    def test_CrearInvocador(self):
+        print("test_CrearInvocador")
+        self.assertIsInstance(self.sql.CrearInvocador(self.invocador1), Invocador)
 
-    def BorrarInvocador_test(self):
-        print("BorrarInvocador_test")
-        self.assertTrue(self.SQL.BorrarInvocador('jarasdeboy'))
+    def test_BorrarInvocador(self):
+        print("test_BorrarInvocador")
+        self.assertTrue(self.sql.BorrarInvocador('Raizen blackshot'))
 
 if __name__ == '__main__':
     unittest.main()

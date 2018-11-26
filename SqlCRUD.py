@@ -14,6 +14,7 @@ class SqlCRUD(AbstractLOL):
         self.cursor.execute("INSERT INTO Summoner (Id, Name, Level, Wins, Losses, Tier, Comportamiento) VALUES (?,?,?,?,?,?,?)", inv)
         self.conexion.commit()#guarda cambios
         Invocador.Name = self.cursor.lastrowid
+        return Invocador
 
     def MostrarLista(self):
         self.cursor.execute("SELECT * from Summoner")
